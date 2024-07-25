@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  apache:
+    build: .
+    container_name: apache_web_server
+    volumes:
+      - ./htdocs:/usr/local/apache2/htdocs/
+    ports:
+      - "80:80"
+
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      WATCHTOWER_CLEANUP: "true"
+      WATCHTOWER_POLL_INTERVAL: 86400  # Check for updates once a day (86400 seconds)
+
+volumes:
+  your-local-directory:
+    driver: local
