@@ -43,4 +43,3 @@ docker run --network my_network imageName
 ```bash
 docker run --privileged imageName
 ```
-
